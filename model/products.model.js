@@ -14,16 +14,13 @@ const productSchema = mongoose.Schema({
         required: true
     },
     model: {
-        type: String,
-        required: true
+        type: String
     },
     discountPrice: {
-        type: Number,
-        required: true
+        type: Number
     },
     image: {
-        type: String,
-        required: true
+        type: String
     },
 
     price: {
@@ -34,3 +31,6 @@ const productSchema = mongoose.Schema({
 
 
 })
+
+const Product = mongoose.model("Product", productSchema);
+module.exports = Product;

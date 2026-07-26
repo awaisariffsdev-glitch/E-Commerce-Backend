@@ -1,3 +1,4 @@
+const Product = require("../model/products.model");
 const productAdd = async (req, res) => {
     try {
         const { title, description, brand, model, discountPrice, price } = req.body;
@@ -22,6 +23,7 @@ const productAdd = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: error.message });
     }
 }
