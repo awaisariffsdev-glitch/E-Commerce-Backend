@@ -10,14 +10,14 @@ app.use(morgan("dev"));
 
 app.get("/profile", authMiddleware, async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email } = req.User;
         if (!email) {
             return res.status(400).json({
                 message: "Email is required"
             })
         }
 
-        const userFind = await User.find({ email });
+        const userFind = await User.findOne({ email });
 
         return res.status(200).json({
             message: "User Find Successfully",

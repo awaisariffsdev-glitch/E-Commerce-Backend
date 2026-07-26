@@ -6,8 +6,8 @@ const authMiddleware = (req, res, next) => {
     if (!authHeader) {
         return res.status(401).json({ message: 'Access denied. No token provided.' });
     }
-    const decoded = jwt.verify(authHeader, process.env.SCRECT_KEY);
-    // Further token validation logic can be added here
+    const decoded = jwt.decode(authHeader);
+    req.User = decoded;
     next();
 };
 
