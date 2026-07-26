@@ -1,3 +1,5 @@
 const { default: mongoose } = require("mongoose");
 
-const productSchema=mongoose
+const productSchema=mongoose.Schema({
+    
+})
