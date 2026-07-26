@@ -28,6 +28,7 @@ app.get("/profile", authMiddleware, async (req, res) => {
     }
 })
 app.use("/user", require("./routes/User"));
+app.use("/product", require("./routes/Product"));
 // app.use("/admin",require("./routes/Admin"));
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
