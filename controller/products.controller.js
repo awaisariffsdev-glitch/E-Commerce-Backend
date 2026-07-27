@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Product = require("../model/products.model");
 const productAdd = async (req, res) => {
     try {
@@ -41,7 +42,22 @@ const productUpdate = async (req, res) => {
     }
 }
 
+const productDelete = async (req, res) => {
+    try {
+        const id  = req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid product ID" });
+        }
+        const product = await Product.findByIdAndDelete(id);
+        res.status(200).json({ message: "Product deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     productAdd,
-    productUpdate
+    productUpdate,
+    productDelete
 }
