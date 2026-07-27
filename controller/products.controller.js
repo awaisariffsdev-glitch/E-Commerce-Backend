@@ -28,6 +28,20 @@ const productAdd = async (req, res) => {
     }
 }
 
+
+const productUpdate = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, description, brand, model, discountPrice, price } = req.body;
+        const productUpdate = await Product.findByIdAndUpdate(id, { title, description, brand, model, discountPrice, image: req.file ? req.file.path : null, price }, { new: true });
+        res.status(200).json({ message: "Product updated successfully", product: productUpdate });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
-    productAdd
+    productAdd,
+    productUpdate
 }
